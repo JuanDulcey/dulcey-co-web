@@ -4,6 +4,17 @@ export type ServiceId =
   | 'agentes-ia'
   | 'ciencia-datos';
 
+export const SERVICE_IDS: readonly ServiceId[] = [
+  'arquitectura-web',
+  'software-medida',
+  'agentes-ia',
+  'ciencia-datos',
+] as const;
+
+export function isServiceId(value: string): value is ServiceId {
+  return (SERVICE_IDS as readonly string[]).includes(value);
+}
+
 export interface ServicePillar {
   id: ServiceId;
   index: '01' | '02' | '03' | '04';
@@ -19,6 +30,11 @@ export interface PhilosophyPillar {
   romanIndex: 'I' | 'II' | 'III';
   title: string;
   description: string;
+}
+
+export interface ExecutiveCommitment {
+  label: string;
+  detail: string;
 }
 
 export const HERO_MANIFESTO = {
@@ -119,5 +135,20 @@ export const PHILOSOPHY_PILLARS: readonly PhilosophyPillar[] = [
     title: 'Confidencialidad y Exclusividad',
     description:
       'Tratamiento estrictamente reservado de los datos, modelos matemáticos y lógica operativa de cada cliente bajo estándares directivos.',
+  },
+] as const;
+
+export const EXECUTIVE_COMMITMENTS: readonly ExecutiveCommitment[] = [
+  {
+    label: 'Propiedad Intelectual Íntegra',
+    detail: 'Titularidad total del código fuente, modelos y arquitectura para su organización.',
+  },
+  {
+    label: 'Acuerdo de Confidencialidad (NDA)',
+    detail: 'Reserva contractual previa antes de analizar información financiera u operativa.',
+  },
+  {
+    label: 'Arquitectura Documentada',
+    detail: 'Sistemas auditables, escalables y libres de dependencia forzada a terceros.',
   },
 ] as const;

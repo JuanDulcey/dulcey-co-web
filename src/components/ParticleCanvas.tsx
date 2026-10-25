@@ -10,7 +10,7 @@ export function ParticleCanvas() {
   useExecutiveParticles(canvasRef);
 
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden print:hidden">
       {/* Iluminación cenital atmosférica ultratenue sobre obsidiana #040405 */}
       <div
         className="absolute inset-0"
