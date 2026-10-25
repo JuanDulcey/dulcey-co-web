@@ -1,0 +1,23 @@
+{
+  "name": "Dulcey & Co. — Ingeniería Computacional y Software a Medida",
+  "short_name": "Dulcey & Co.",
+  "description": "Firma privada de ingeniería computacional, arquitectura web de autor, software a medida, agentes de inteligencia artificial y ciencia de datos predictiva.",
+  "lang": "es-CO",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#040405",
+  "theme_color": "#040405",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

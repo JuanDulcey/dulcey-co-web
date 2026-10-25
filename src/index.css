@@ -2,14 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Tipografías Auto-Hospedadas (Cero FOUT · Cero Bloqueo Externo) */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/eb-garamond-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/eb-garamond-400-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+}
+
 :root {
-  /* 3.1 Paleta Oficial de Tokens — Dulcey & Co. */
+  /* Paleta Oficial de Tokens — Dulcey & Co. (Contraste Óptico WCAG AA Verificado) */
   --bg-obsidian: #040405;
-  --surface-card: rgba(11, 11, 14, 0.82);
-  --surface-elevated: rgba(20, 20, 26, 0.9);
+  --surface-card: rgba(11, 11, 14, 0.88);
+  --surface-elevated: rgba(20, 20, 26, 0.92);
   --text-ivory: #f4f4f6;
-  --text-platinum: #a1a1aa;
-  --text-muted: #52525b;
+  --text-platinum: #a8a8b3;
+  --text-muted: #84848f;
   --accent-gold: #c5a059;
   --accent-gold-light: #e5c787;
   --border-hairline: rgba(197, 160, 89, 0.18);
@@ -27,6 +52,7 @@
     color: var(--text-ivory);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -37,6 +63,10 @@
     background-color: var(--bg-obsidian);
     color: var(--text-ivory);
     overflow-x: hidden;
+  }
+
+  .font-serif {
+    font-feature-settings: 'kern' 1, 'liga' 1;
   }
 
   /* Scrollbar Ejecutivo de Precisión */
@@ -63,8 +93,6 @@
 .executive-monolith {
   position: relative;
   background-color: var(--surface-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-hairline);
   box-shadow:
     0 36px 100px -24px rgba(0, 0, 0, 0.95),
@@ -115,7 +143,7 @@
   z-index: 2;
 }
 
-/* Spotlight más concentrado para módulos interactivos de servicios */
+/* Spotlight concentrado para hoja activa y esquela de correspondencia */
 .spotlight-module {
   position: relative;
 }
@@ -130,7 +158,7 @@
   transition: opacity 300ms ease;
   background: radial-gradient(
     320px circle at var(--mouse-x) var(--mouse-y),
-    rgba(197, 160, 89, 0.08),
+    rgba(197, 160, 89, 0.075),
     transparent 55%
   );
   z-index: 1;
@@ -147,7 +175,7 @@
   transition: opacity 300ms ease;
   background: radial-gradient(
     260px circle at var(--mouse-x) var(--mouse-y),
-    rgba(229, 199, 135, 0.72),
+    rgba(229, 199, 135, 0.7),
     rgba(197, 160, 89, 0.2) 45%,
     transparent 75%
   );
@@ -159,26 +187,6 @@
   z-index: 2;
 }
 
-/* Línea divisoria horológica con degradado central dorado */
-.horological-divider {
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(197, 160, 89, 0.06) 0%,
-    rgba(197, 160, 89, 0.26) 50%,
-    rgba(197, 160, 89, 0.06) 100%
-  );
-}
-
-/* Retícula técnica sutil de fondo para paneles de especificación */
-.blueprint-grid-bg {
-  background-image:
-    linear-gradient(to right, rgba(197, 160, 89, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(197, 160, 89, 0.045) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -187,5 +195,49 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   MODO DOSSIER IMPRESO / EXPORTACIÓN PDF (@media print)
+   Formatea la tarjeta digital como un documento corporativo limpio sobre marfil
+   con las 4 Áreas de Práctica íntegras para comités o expedientes directivos.
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  :root {
+    --bg-obsidian: #ffffff;
+    --surface-card: #ffffff;
+    --text-ivory: #111114;
+    --text-platinum: #2c2c34;
+    --text-muted: #52525b;
+    --accent-gold: #7c5c22;
+    --accent-gold-light: #7c5c22;
+    --border-hairline: rgba(20, 20, 24, 0.2);
+    --border-active: rgba(124, 92, 34, 0.55);
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111114 !important;
+    font-size: 11pt;
+  }
+
+  .executive-monolith {
+    background: #ffffff !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(20, 20, 24, 0.35) !important;
+  }
+
+  .spotlight-surface::before,
+  .spotlight-surface::after,
+  .spotlight-module::before,
+  .spotlight-module::after {
+    display: none !important;
   }
 }
