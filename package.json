@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Dulcey & Co. — Computational Engineering & Bespoke Software | Executive Digital Suite",
+  "description": "Dulcey & Co. — Ingeniería Computacional y Software a Medida | Tarjeta Ejecutiva Institucional",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -13,7 +13,6 @@
   "dependencies": {
     "framer-motion": "^11.15.0",
     "gsap": "^3.12.5",
-    "lucide-react": "^0.468.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

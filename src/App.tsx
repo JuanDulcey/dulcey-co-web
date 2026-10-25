@@ -13,13 +13,12 @@ import type { ServiceId } from './data/services';
 import { useSpotlight } from './hooks/useSpotlight';
 
 /**
- * Dulcey & Co. — Executive Digital Suite (SPA)
- * Pliego Ejecutivo con Scroll Fluido sobre fondo de partículas neurales en polvo de oro,
- * textura analógica y bordes iluminados dinámicamente.
+ * Dulcey & Co. — Tarjeta Institucional de Negocios (SPA)
+ * Pliego monolítico grabado en obsidiana y oro envejecido sobre constelaciones sutiles.
  */
 export function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [selectedServiceId, setSelectedServiceId] = useState<ServiceId>('web-ecosystems');
+  const [selectedServiceId, setSelectedServiceId] = useState<ServiceId>('arquitectura-web');
 
   const suiteRef = useRef<HTMLDivElement | null>(null);
   const { spotlightRef, spotlightHandlers } = useSpotlight<HTMLElement>();
@@ -42,47 +41,47 @@ export function App() {
       ref={suiteRef}
       className="relative min-h-dvh w-full bg-[var(--bg-obsidian)] text-[var(--text-ivory)]"
     >
-      {/* Secuencia de Apertura GSAP (Calibración Horológica) */}
+      {/* Apertura Silenciosa de Monograma */}
       <ExecutivePreloader suiteContainerRef={suiteRef} />
 
-      {/* Motor 2D de Partículas "Gold Dust & Neural Nodes" */}
+      {/* Fondo Sutil de Polvo de Oro y Nodos */}
       <ParticleCanvas />
 
-      {/* Textura Analógica Fija (SVG feTurbulence opacity 0.025) */}
+      {/* Textura Analógica de Papel Algodón / Metal Cepillado */}
       <NoiseOverlay />
 
-      {/* Marco Perimetral del Pliego Ejecutivo */}
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-3 py-3 sm:px-6 sm:py-7 lg:px-10 lg:py-10">
+      {/* Marco Perimetral de la Tarjeta Institucional */}
+      <div className="relative z-10 mx-auto w-full max-w-[1360px] px-3 py-4 sm:px-6 sm:py-8 lg:px-10 lg:py-12">
         <main
           ref={spotlightRef}
           {...spotlightHandlers}
-          className="executive-monolith spotlight-surface rounded-sm"
+          className="executive-monolith spotlight-surface"
         >
-          {/* Remates Biselados de 8px en las 4 Esquinas Principales */}
+          {/* Biselado Horológico Exclusivo en las 4 Esquinas Exteriores */}
           <EngravedCorners active />
 
-          {/* 5.1 Header de la Tarjeta Ejecutiva */}
+          {/* Membrete Institucional */}
           <Navbar onOpenContact={handleOpenGeneralContact} />
-          <div className="horological-divider" role="separator" />
+          <div className="border-t border-[var(--border-hairline)]" role="separator" />
 
-          {/* 5.2 Sección Hero (Manifiesto de Marca) */}
+          {/* Manifiesto de la Firma */}
           <HeroSection />
-          <div className="horological-divider" role="separator" />
+          <div className="border-t border-[var(--border-hairline)]" role="separator" />
 
-          {/* 5.3 Núcleo Interactivo: Los 4 Pilares de Servicios */}
+          {/* Las Cuatro Áreas de Práctica */}
           <ServicesShowcase onConsultService={handleConsultSpecificService} />
-          <div className="horological-divider" role="separator" />
+          <div className="border-t border-[var(--border-hairline)]" role="separator" />
 
-          {/* 5.4 Sección de Metodología / Filosofía ("El Estándar Dulcey & Co.") */}
+          {/* El Estándar Dulcey & Co. */}
           <PhilosophyBar />
-          <div className="horological-divider" role="separator" />
+          <div className="border-t border-[var(--border-hairline)]" role="separator" />
 
-          {/* 5.5 Footer Ejecutivo & Acción de Contacto */}
+          {/* Pie Institucional y Consultoría Privada */}
           <ExecutiveFooter onOpenContact={handleOpenGeneralContact} />
         </main>
       </div>
 
-      {/* Modal Ejecutivo de Consultoría Privada */}
+      {/* Tarjeta de Correspondencia Privada */}
       <ContactModal
         isOpen={isContactOpen}
         initialServiceId={selectedServiceId}

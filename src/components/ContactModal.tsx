@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Check, Copy, Mail, MessageSquare, Shield, X } from 'lucide-react';
 import {
   EXECUTIVE_CONTACT_CONFIG,
   buildMailtoUrl,
@@ -17,11 +16,9 @@ interface ContactModalProps {
 }
 
 /**
- * Modal Ejecutivo de Contacto (Sección 5.5 + Decisiones 4 & 5)
- * - Permite elegir el área de interés entre los 4 pilares.
- * - Incluye campos opcionales inteligentes (Nombre/Firma y Contexto Breve) que
- *   pre-redactan automáticamente WhatsApp (`wa.me`) y Email (`mailto:`).
- * - Permite copiar el correo corporativo en un clic con confirmación visual.
+ * Tarjeta de Correspondencia Privada (Modal Ejecutivo de Contacto)
+ * Estética de esquela grabada sobre obsidiana, selección por filetes finos
+ * y líneas de escritura abiertas (`border-b`) en español íntegro.
  */
 export function ContactModal({ isOpen, initialServiceId, onClose }: ContactModalProps) {
   const [selectedServiceId, setSelectedServiceId] = useState<ServiceId>(initialServiceId);
@@ -31,14 +28,12 @@ export function ContactModal({ isOpen, initialServiceId, onClose }: ContactModal
 
   const { spotlightRef, spotlightHandlers } = useSpotlight<HTMLDivElement>();
 
-  // Sincronizar cuando se abre desde un pilar específico en ServicesShowcase
   useEffect(() => {
     if (isOpen) {
       setSelectedServiceId(initialServiceId);
     }
   }, [isOpen, initialServiceId]);
 
-  // Cierre con tecla Escape y bloqueo de scroll del documento
   useEffect(() => {
     if (!isOpen) return;
 
@@ -64,7 +59,7 @@ export function ContactModal({ isOpen, initialServiceId, onClose }: ContactModal
   const brief = {
     serviceId: selectedService.id,
     serviceTitle: selectedService.title,
-    serviceModalLabel: selectedService.modalLabel,
+    serviceShortLabel: selectedService.shortLabel,
     clientName,
     projectNote,
   };
@@ -95,66 +90,66 @@ export function ContactModal({ isOpen, initialServiceId, onClose }: ContactModal
     <AnimatePresence>
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 sm:p-6"
           role="dialog"
           aria-modal="true"
           aria-labelledby="dulcey-contact-modal-title"
         >
-          {/* Fondo desenfocado de obsidiana */}
+          {/* Velo oscuro desenfocado */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.24 }}
             onClick={onClose}
             className="fixed inset-0 bg-[#040405]/85 backdrop-blur-xl"
             aria-hidden="true"
           />
 
-          {/* Tarjeta Privada de Contacto */}
+          {/* Esquela / Tarjeta Privada */}
           <motion.div
             ref={spotlightRef}
             {...spotlightHandlers}
-            initial={{ opacity: 0, scale: 0.96, y: 14 }}
+            initial={{ opacity: 0, scale: 0.98, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.97, y: 10 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="spotlight-module relative z-10 my-auto w-full max-w-2xl rounded-sm border border-[var(--border-active)] bg-[#09090D]/95 p-5 sm:p-8 shadow-executive"
+            exit={{ opacity: 0, scale: 0.985, y: 8 }}
+            transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
+            className="spotlight-module relative z-10 my-auto w-full max-w-[640px] border border-[var(--border-active)] bg-[#08080B]/95 p-6 sm:p-10 shadow-executive"
           >
             <EngravedCorners active />
 
-            <div className="relative z-10 space-y-6">
-              {/* Cabecera del Modal */}
-              <div className="flex items-start justify-between gap-4 border-b border-[var(--border-hairline)] pb-4">
+            <div className="relative z-10">
+              {/* Encabezado de Correspondencia */}
+              <div className="flex items-start justify-between gap-4 border-b border-[var(--border-hairline)] pb-5">
                 <div>
-                  <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-[var(--accent-gold)]">
-                    [ CANAL RESERVADO // DULCEY &amp; CO. ]
+                  <span className="font-sans text-[10.5px] uppercase tracking-[0.22em] text-[var(--accent-gold)]">
+                    Correspondencia Privada · Dulcey &amp; Co.
                   </span>
                   <h2
                     id="dulcey-contact-modal-title"
-                    className="mt-1.5 font-serif text-2xl sm:text-3xl font-normal text-[var(--text-ivory)]"
+                    className="mt-2 font-serif text-2xl sm:text-3xl font-normal text-[var(--text-ivory)]"
                   >
-                    Agendar Consultoría <span className="italic text-[var(--accent-gold)]">Privada</span>
+                    Agendar Consultoría <em className="italic text-[var(--accent-gold)]">Privada</em>
                   </h2>
                 </div>
 
                 <button
                   type="button"
                   onClick={onClose}
-                  aria-label="Cerrar ventana de consultoría"
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm border border-[var(--border-hairline)] bg-[#060608] text-[var(--text-platinum)] transition-colors hover:border-[var(--border-active)] hover:text-[var(--text-ivory)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-gold)]"
+                  aria-label="Cerrar ventana"
+                  className="px-2 py-1 font-serif text-2xl leading-none text-[var(--text-platinum)] transition-colors hover:text-[var(--text-ivory)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-gold)]"
                 >
-                  <X className="h-4 w-4" strokeWidth={1.25} />
+                  ×
                 </button>
               </div>
 
-              {/* Paso 1: Selección de Área de Interés */}
-              <div>
-                <label className="block font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-muted)] mb-2.5">
-                  01 // SELECCIONE EL ÁREA DE INTERÉS
-                </label>
+              {/* Selección de Práctica */}
+              <div className="mt-6">
+                <span className="block font-sans text-[10.5px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                  Práctica de Interés
+                </span>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 border-t border-l border-[var(--border-hairline)]">
                   {SERVICES_DATA.map((service) => {
                     const active = service.id === selectedServiceId;
                     return (
@@ -163,24 +158,25 @@ export function ContactModal({ isOpen, initialServiceId, onClose }: ContactModal
                         type="button"
                         onClick={() => setSelectedServiceId(service.id)}
                         aria-pressed={active}
-                        className={`flex items-center justify-between gap-2 rounded-sm border px-3.5 py-3 text-left transition-all duration-200 ${
+                        className={`flex items-baseline justify-between gap-3 border-b border-r border-[var(--border-hairline)] px-4 py-3.5 text-left transition-colors duration-200 ${
                           active
-                            ? 'border-[var(--border-active)] bg-[rgba(197,160,89,0.12)] text-[var(--text-ivory)]'
-                            : 'border-[var(--border-hairline)] bg-[#060609] text-[var(--text-platinum)] hover:border-[rgba(197,160,89,0.35)] hover:text-[var(--text-ivory)]'
+                            ? 'bg-[rgba(197,160,89,0.09)] text-[var(--text-ivory)]'
+                            : 'bg-transparent text-[var(--text-platinum)] hover:bg-[rgba(255,255,255,0.02)] hover:text-[var(--text-ivory)]'
                         }`}
                       >
-                        <div>
-                          <span className="block font-mono text-[10px] tracking-[0.15em] text-[var(--accent-gold)]">
-                            [ {service.index} ]
+                        <div className="min-w-0">
+                          <span className="font-serif text-sm italic text-[var(--accent-gold)]">
+                            {service.index}.
                           </span>
-                          <span className="mt-0.5 block font-sans text-xs sm:text-[13px] font-medium">
-                            {service.modalLabel}
+                          <span className="ml-2 font-sans text-xs font-light">
+                            {service.shortLabel}
                           </span>
                         </div>
 
                         <span
-                          className={`h-2 w-2 shrink-0 rounded-full transition-colors ${
-                            active ? 'bg-[var(--accent-gold-light)] shadow-[0_0_8px_#E5C787]' : 'bg-muted/50'
+                          aria-hidden="true"
+                          className={`h-1.5 w-1.5 shrink-0 rounded-full transition-colors ${
+                            active ? 'bg-[var(--accent-gold-light)]' : 'bg-transparent'
                           }`}
                         />
                       </button>
@@ -189,117 +185,92 @@ export function ContactModal({ isOpen, initialServiceId, onClose }: ContactModal
                 </div>
               </div>
 
-              {/* Paso 2: Brief Opcional Inteligente */}
-              <div className="space-y-3">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-muted)]">
-                    02 // CONTEXTO EJECUTIVO (OPCIONAL)
-                  </span>
-                  <span className="font-mono text-[10px] tracking-[0.1em] text-gold/80">
-                    PRE-REDACTA SU MENSAJE
-                  </span>
+              {/* Líneas de Escritura (Opcionales) */}
+              <div className="mt-7 space-y-5">
+                <div>
+                  <label
+                    htmlFor="dulcey-client-name"
+                    className="block font-sans text-[10.5px] uppercase tracking-[0.2em] text-[var(--text-muted)]"
+                  >
+                    Nombre o Firma Empresarial (Opcional)
+                  </label>
+                  <input
+                    id="dulcey-client-name"
+                    type="text"
+                    value={clientName}
+                    onChange={(e) => setClientName(e.target.value)}
+                    placeholder="Escriba su nombre o el de su organización"
+                    className="mt-1.5 w-full border-b border-[var(--border-hairline)] bg-transparent py-2 font-sans text-sm font-light text-[var(--text-ivory)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent-gold)] focus:outline-none"
+                  />
                 </div>
 
-                <div className="space-y-2.5">
-                  <div>
-                    <label htmlFor="dulcey-client-name" className="sr-only">
-                      Nombre o Firma
-                    </label>
-                    <input
-                      id="dulcey-client-name"
-                      type="text"
-                      value={clientName}
-                      onChange={(e) => setClientName(e.target.value)}
-                      placeholder="Su nombre o firma empresarial"
-                      className="w-full rounded-sm border border-[var(--border-hairline)] bg-[#050508] px-3.5 py-2.5 font-sans text-xs sm:text-sm font-light text-[var(--text-ivory)] placeholder:text-[var(--text-muted)] focus:border-[var(--border-active)] focus:outline-none"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="dulcey-project-note" className="sr-only">
-                      Nota breve del requerimiento
-                    </label>
-                    <textarea
-                      id="dulcey-project-note"
-                      rows={2}
-                      value={projectNote}
-                      onChange={(e) => setProjectNote(e.target.value)}
-                      placeholder="Objetivo clave, integración deseada o alcance estimado"
-                      className="w-full resize-none rounded-sm border border-[var(--border-hairline)] bg-[#050508] px-3.5 py-2.5 font-sans text-xs sm:text-sm font-light leading-relaxed text-[var(--text-ivory)] placeholder:text-[var(--text-muted)] focus:border-[var(--border-active)] focus:outline-none"
-                    />
-                  </div>
+                <div>
+                  <label
+                    htmlFor="dulcey-project-note"
+                    className="block font-sans text-[10.5px] uppercase tracking-[0.2em] text-[var(--text-muted)]"
+                  >
+                    Nota Breve sobre su Iniciativa (Opcional)
+                  </label>
+                  <input
+                    id="dulcey-project-note"
+                    type="text"
+                    value={projectNote}
+                    onChange={(e) => setProjectNote(e.target.value)}
+                    placeholder="Propósito principal o requerimiento general"
+                    className="mt-1.5 w-full border-b border-[var(--border-hairline)] bg-transparent py-2 font-sans text-sm font-light text-[var(--text-ivory)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent-gold)] focus:outline-none"
+                  />
                 </div>
               </div>
 
-              {/* Paso 3: Canales Directos de Despacho */}
-              <div className="space-y-3 pt-1">
-                <span className="block font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--text-muted)]">
-                  03 // INICIAR CONVERSACIÓN DIRECTA
-                </span>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {EXECUTIVE_CONTACT_CONFIG.whatsappEnabled && (
-                    <a
-                      href={whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2.5 rounded-sm border border-[var(--border-active)] bg-[var(--accent-gold)] px-4 py-3 font-mono text-[11px] font-medium tracking-[0.13em] uppercase text-[#040405] transition-all duration-200 hover:bg-[var(--accent-gold-light)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold-light)]"
-                    >
-                      <MessageSquare className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
-                      <span>WHATSAPP EJECUTIVO</span>
-                    </a>
-                  )}
-
+              {/* Canales Directos */}
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {EXECUTIVE_CONTACT_CONFIG.whatsappEnabled && (
                   <a
-                    href={mailtoUrl}
-                    className="flex items-center justify-center gap-2.5 rounded-sm border border-[var(--border-active)] bg-[#0E0E13] px-4 py-3 font-mono text-[11px] tracking-[0.13em] uppercase text-[var(--accent-gold-light)] transition-all duration-200 hover:bg-[rgba(197,160,89,0.14)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-gold-light)]"
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-center gap-2 whitespace-nowrap border border-[var(--border-active)] bg-[var(--accent-gold)] px-4 py-3.5 font-sans text-[10.5px] sm:text-[11px] font-medium uppercase tracking-[0.14em] text-[#040405] transition-colors duration-200 hover:bg-[var(--accent-gold-light)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-gold-light)]"
                   >
-                    <Mail className="h-4 w-4" strokeWidth={1.25} aria-hidden="true" />
-                    <span>EMAIL CORPORATIVO</span>
+                    <span>Conversar por WhatsApp</span>
+                    <span
+                      aria-hidden="true"
+                      className="transition-transform duration-200 group-hover:translate-x-0.5"
+                    >
+                      →
+                    </span>
                   </a>
-                </div>
+                )}
 
-                {/* Copiar correo directo al portapapeles */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 rounded-sm border border-[var(--border-hairline)] bg-[#050508] px-3.5 py-2.5">
-                  <div className="flex items-center gap-2 font-mono text-xs text-[var(--text-platinum)]">
-                    <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--text-muted)]">
-                      DIRECTO:
-                    </span>
-                    <span className="select-all text-[var(--text-ivory)]">
-                      {EXECUTIVE_CONTACT_CONFIG.email}
-                    </span>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={handleCopyEmail}
-                    className="inline-flex items-center justify-center gap-1.5 rounded-sm border border-[var(--border-hairline)] bg-[var(--surface-elevated)] px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] uppercase text-[var(--accent-gold-light)] transition-colors hover:border-[var(--border-active)]"
+                <a
+                  href={mailtoUrl}
+                  className="group flex items-center justify-center gap-2 whitespace-nowrap border border-[var(--border-active)] bg-transparent px-4 py-3.5 font-sans text-[10.5px] sm:text-[11px] font-normal uppercase tracking-[0.14em] text-[var(--accent-gold-light)] transition-colors duration-200 hover:bg-[rgba(197,160,89,0.1)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-gold-light)]"
+                >
+                  <span>Escribir por Correo</span>
+                  <span
+                    aria-hidden="true"
+                    className="transition-transform duration-200 group-hover:translate-x-0.5"
                   >
-                    {copied ? (
-                      <>
-                        <Check className="h-3.5 w-3.5 text-[#10B981]" strokeWidth={1.5} />
-                        <span className="text-[#10B981]">CORREO COPIADO</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="h-3.5 w-3.5" strokeWidth={1.25} />
-                        <span>COPIAR CORREO</span>
-                      </>
-                    )}
-                  </button>
-                </div>
+                    →
+                  </span>
+                </a>
               </div>
 
-              {/* Pie de confidencialidad */}
-              <div className="flex items-center gap-2 pt-1 font-mono text-[10px] tracking-[0.11em] text-[var(--text-muted)]">
-                <Shield
-                  className="h-3.5 w-3.5 shrink-0 text-gold/75"
-                  strokeWidth={1.25}
-                  aria-hidden="true"
-                />
-                <span>
-                  TODA COMUNICACIÓN SE RIGE BAJO ESTRICTA RESERVA Y CONFIDENCIALIDAD EJECUTIVA.
-                </span>
+              {/* Dirección Directa y Copiado */}
+              <div className="mt-6 flex flex-col gap-2 border-t border-[var(--border-hairline)] pt-5 sm:flex-row sm:items-center sm:justify-between">
+                <p className="font-sans text-xs font-light text-[var(--text-platinum)]">
+                  Dirección directa:{' '}
+                  <span className="select-all text-[var(--text-ivory)]">
+                    {EXECUTIVE_CONTACT_CONFIG.email}
+                  </span>
+                </p>
+
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="self-start sm:self-auto border-b border-[var(--border-hairline)] pb-0.5 font-sans text-[10.5px] uppercase tracking-[0.18em] text-[var(--accent-gold)] transition-colors hover:border-[var(--accent-gold-light)] hover:text-[var(--accent-gold-light)]"
+                >
+                  {copied ? 'Dirección copiada' : 'Copiar dirección'}
+                </button>
               </div>
             </div>
           </motion.div>
