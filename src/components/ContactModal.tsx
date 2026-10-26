@@ -180,7 +180,7 @@ export function ContactModal({ isOpen, initialServiceId, onClose }: ContactModal
             exit={{ opacity: 0 }}
             transition={{ duration: 0.22 }}
             onClick={onClose}
-            className="fixed inset-0 bg-[#040405]/85 backdrop-blur-md"
+            className="fixed inset-0 bg-black/60 dark:bg-[#040405]/85 backdrop-blur-md"
             aria-hidden="true"
           />
 
@@ -192,7 +192,7 @@ export function ContactModal({ isOpen, initialServiceId, onClose }: ContactModal
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.99, y: 6 }}
             transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            className="spotlight-module relative z-10 my-auto w-full max-w-[650px] border border-[var(--border-active)] bg-[#08080B]/95 p-5 sm:p-10 shadow-executive"
+            className="spotlight-module relative z-10 my-auto w-full max-w-[650px] border border-[var(--border-active)] bg-[var(--surface-elevated)] p-5 sm:p-10 shadow-executive"
           >
             <EngravedCorners active />
 
@@ -240,7 +240,7 @@ export function ContactModal({ isOpen, initialServiceId, onClose }: ContactModal
                         className={`flex items-baseline justify-between gap-2.5 border-b border-r border-[var(--border-hairline)] px-3.5 py-3 sm:px-4 sm:py-3.5 text-left transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-[var(--accent-gold)] ${
                           active
                             ? 'bg-[rgba(197,160,89,0.1)] text-[var(--text-ivory)]'
-                            : 'bg-transparent text-[var(--text-platinum)] hover:bg-[rgba(255,255,255,0.02)] hover:text-[var(--text-ivory)]'
+                            : 'bg-transparent text-[var(--text-platinum)] hover:bg-[rgba(197,160,89,0.05)] hover:text-[var(--text-ivory)]'
                         }`}
                       >
                         <div className="min-w-0">
@@ -308,7 +308,7 @@ export function ContactModal({ isOpen, initialServiceId, onClose }: ContactModal
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-center gap-2 border border-[var(--border-active)] bg-[var(--accent-gold)] px-3.5 py-3.5 text-center font-sans text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.12em] sm:tracking-[0.14em] text-[#040405] transition-colors duration-200 hover:bg-[var(--accent-gold-light)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-gold-light)]"
+                    className="group flex items-center justify-center gap-2 border border-[var(--border-active)] bg-[var(--accent-gold)] px-3.5 py-3.5 text-center font-sans text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.12em] sm:tracking-[0.14em] text-white dark:text-[#040405] transition-colors duration-200 hover:bg-[var(--accent-gold-light)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-gold-light)]"
                   >
                     <span>Conversar por WhatsApp</span>
                     <span
@@ -434,7 +434,7 @@ export function ContactModal({ isOpen, initialServiceId, onClose }: ContactModal
                       transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="mt-1 flex flex-col items-center gap-3 border border-[var(--border-hairline)] bg-[#050507] p-4 sm:flex-row sm:gap-5">
+                      <div className="mt-1 flex flex-col items-center gap-3 border border-[var(--border-hairline)] bg-[var(--surface-card)] p-4 sm:flex-row sm:gap-5">
                         <div className="shrink-0 border border-[var(--border-active)] bg-[#F4F1EA] p-2.5">
                           <svg
                             viewBox={`0 0 ${qrMatrix.length} ${qrMatrix.length}`}

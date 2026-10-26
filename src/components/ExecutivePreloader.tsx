@@ -47,7 +47,7 @@ export function ExecutivePreloader() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#040405] px-6 select-none print:hidden"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[var(--bg-obsidian)] px-6 select-none print:hidden"
         >
           <div className="flex flex-col items-center">
             <svg
@@ -58,7 +58,7 @@ export function ExecutivePreloader() {
             >
               <m.polygon
                 points="24,3.2 38.7,9.3 44.8,24 38.7,38.7 24,44.8 9.3,38.7 3.2,24 9.3,9.3"
-                stroke="#C5A059"
+                stroke="var(--accent-gold)"
                 strokeWidth="1.05"
                 initial={{ pathLength: 0, opacity: 0.4 }}
                 animate={{ pathLength: 1, opacity: 1 }}
@@ -66,7 +66,7 @@ export function ExecutivePreloader() {
               />
               <m.polygon
                 points="24,6.4 36.4,11.6 41.6,24 36.4,36.4 24,41.6 11.6,36.4 6.4,24 11.6,11.6"
-                stroke="#E5C787"
+                stroke="var(--accent-gold-light)"
                 strokeWidth="0.6"
                 strokeOpacity="0.45"
                 initial={{ opacity: 0, scale: 0.92 }}
@@ -75,7 +75,7 @@ export function ExecutivePreloader() {
               />
               <m.path
                 d={DULCEY_MONOGRAM_D_PATH}
-                fill="#E5C787"
+                fill="var(--accent-gold-light)"
                 fillRule="evenodd"
                 clipRule="evenodd"
                 initial={{ opacity: 0, scale: 0.94 }}

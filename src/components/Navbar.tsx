@@ -1,4 +1,5 @@
 import { BrandLogo } from './BrandLogo';
+import { ThemeToggle } from './ThemeToggle';
 import { EXECUTIVE_CONTACT_CONFIG } from '../data/contact';
 
 interface NavbarProps {
@@ -8,18 +9,22 @@ interface NavbarProps {
 /**
  * Cabecera tipo Membrete de Papelería Privada
  * - Izquierda: Identidad institucional `<BrandLogo />`.
- * - Derecha: Sede en Villa de Leyva y enlace sobrio subrayado en oro
- *   hacia contacto ejecutivo directo (con versión textual limpia para impresión PDF).
+ * - Derecha: Sede en Villa de Leyva, selector de tema visual (Auto/Claro/Oscuro) y enlace
+ *   sobrio subrayado en oro hacia contacto ejecutivo directo.
  */
 export function Navbar({ onOpenContact }: NavbarProps) {
   return (
     <header className="relative z-10 flex flex-col gap-5 px-5 py-6 sm:px-10 sm:py-8 lg:flex-row lg:items-center lg:justify-between lg:px-14 lg:py-9">
       <BrandLogo />
 
-      <div className="flex flex-col items-start gap-1.5 border-t border-[var(--border-hairline)] pt-4 sm:flex-row sm:items-center sm:justify-between lg:flex-col lg:items-end lg:border-t-0 lg:pt-0">
-        <p className="font-sans text-[10.5px] sm:text-[11px] font-normal uppercase tracking-[0.14em] sm:tracking-[0.16em] text-[var(--text-platinum)]">
-          {EXECUTIVE_CONTACT_CONFIG.location}
-        </p>
+      <div className="flex flex-col items-start gap-2.5 border-t border-[var(--border-hairline)] pt-4 sm:flex-row sm:items-center sm:justify-between lg:flex-col lg:items-end lg:border-t-0 lg:pt-0">
+        <div className="flex items-center gap-3 sm:gap-3.5">
+          <p className="font-sans text-[10.5px] sm:text-[11px] font-normal uppercase tracking-[0.14em] sm:tracking-[0.16em] text-[var(--text-platinum)]">
+            {EXECUTIVE_CONTACT_CONFIG.location}
+          </p>
+          <span aria-hidden="true" className="h-3 w-px bg-[var(--border-hairline)] print:hidden" />
+          <ThemeToggle />
+        </div>
 
         <button
           type="button"

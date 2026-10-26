@@ -83,7 +83,7 @@ export function ExecutiveFooter({ onOpenContact }: ExecutiveFooterProps) {
           onPointerLeave={handleMagneticLeave}
           style={{ x: springX, y: springY }}
           whileTap={{ scale: 0.99 }}
-          className="group relative inline-flex w-full sm:w-auto shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap border border-[var(--border-active)] bg-[#0B0A08] px-4 sm:px-7 py-3.5 font-sans text-[10px] sm:text-[11px] font-normal uppercase tracking-[0.13em] sm:tracking-[0.2em] text-[var(--accent-gold-light)] transition-colors duration-300 hover:border-[var(--accent-gold-light)] hover:bg-[var(--accent-gold)] hover:text-[#040405] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-gold-light)] print:hidden"
+          className="group relative inline-flex w-full sm:w-auto shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap border border-[var(--border-active)] bg-[var(--surface-elevated)] px-4 sm:px-7 py-3.5 font-sans text-[10px] sm:text-[11px] font-normal uppercase tracking-[0.13em] sm:tracking-[0.2em] text-[var(--accent-gold-light)] transition-colors duration-300 hover:border-[var(--accent-gold-light)] hover:bg-[var(--accent-gold)] hover:text-white dark:hover:text-[#040405] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-gold-light)] print:hidden"
         >
           <span>Agendar Consultoría Privada</span>
           <span

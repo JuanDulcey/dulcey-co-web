@@ -99,7 +99,7 @@ export function ServicesShowcase({
                 className={`group relative flex flex-1 w-full items-baseline gap-5 px-9 py-7 xl:px-14 xl:py-8 text-left transition-colors duration-300 focus:outline-none focus-visible:bg-[rgba(197,160,89,0.07)] focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-[var(--accent-gold)] ${
                   isActive
                     ? 'bg-[rgba(197,160,89,0.05)]'
-                    : 'hover:bg-[rgba(255,255,255,0.015)]'
+                    : 'hover:bg-[rgba(197,160,89,0.04)]'
                 }`}
               >
                 {/* Filete vertical activo en oro */}
@@ -115,7 +115,7 @@ export function ServicesShowcase({
                   className={`font-serif text-lg italic shrink-0 transition-colors duration-300 ${
                     isActive
                       ? 'text-[var(--accent-gold-light)]'
-                      : 'text-gold/85 group-hover:text-[var(--accent-gold-light)]'
+                      : 'text-[var(--accent-gold)] group-hover:text-[var(--accent-gold-light)]'
                   }`}
                 >
                   {service.index}
@@ -126,7 +126,7 @@ export function ServicesShowcase({
                     className={`font-serif text-[20px] xl:text-[22px] leading-snug text-balance transition-colors duration-300 ${
                       isActive
                         ? 'text-[var(--text-ivory)]'
-                        : 'text-ivory/85 group-hover:text-[var(--text-ivory)]'
+                        : 'text-[var(--text-platinum)] group-hover:text-[var(--text-ivory)]'
                     }`}
                   >
                     {service.title}
@@ -199,7 +199,7 @@ export function ServicesShowcase({
                       {service.capabilities.map((capability) => (
                         <li
                           key={capability}
-                          className="flex items-baseline gap-3 font-sans text-[13.5px] font-light leading-relaxed text-ivory/95"
+                          className="flex items-baseline gap-3 font-sans text-[13.5px] font-light leading-relaxed text-[var(--text-ivory)]"
                         >
                           <span aria-hidden="true" className="text-[var(--accent-gold)] select-none">
                             —
@@ -217,7 +217,7 @@ export function ServicesShowcase({
                     <span className="block font-sans text-[10.5px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
                       Impacto en el Negocio
                     </span>
-                    <p className="mt-1.5 font-sans text-[13.5px] font-light leading-relaxed text-pretty text-ivory/95">
+                    <p className="mt-1.5 font-sans text-[13.5px] font-light leading-relaxed text-pretty text-[var(--text-ivory)]">
                       {service.businessImpact}
                     </p>
                   </div>
@@ -314,7 +314,7 @@ export function ServicesShowcase({
                           {service.capabilities.map((capability) => (
                             <li
                               key={capability}
-                              className="flex items-baseline gap-2.5 font-sans text-xs font-light text-ivory/95"
+                              className="flex items-baseline gap-2.5 font-sans text-xs font-light text-[var(--text-ivory)]"
                             >
                               <span aria-hidden="true" className="text-[var(--accent-gold)]">
                                 —
@@ -329,7 +329,7 @@ export function ServicesShowcase({
                         <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
                           Impacto en el Negocio
                         </p>
-                        <p className="mt-1.5 font-sans text-xs font-light leading-relaxed text-pretty text-ivory/95">
+                        <p className="mt-1.5 font-sans text-xs font-light leading-relaxed text-pretty text-[var(--text-ivory)]">
                           {service.businessImpact}
                         </p>
                       </div>

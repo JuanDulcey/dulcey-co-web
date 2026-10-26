@@ -178,6 +178,10 @@ export function useExecutiveParticles(canvasRef: RefObject<HTMLCanvasElement | n
         else if (p.y > height + 12) p.y = -12;
       }
 
+      const isLightMode = document.documentElement.classList.contains('light');
+      const activeGoldRgb = isLightMode ? '139, 109, 42' : GOLD_RGB;
+      const activeGoldLightRgb = isLightMode ? '176, 142, 68' : GOLD_LIGHT_RGB;
+
       // 2. Conexiones entre partículas (< 110px, línea ultrafina de 0.5px)
       ctx.lineWidth = 0.5;
       for (let i = 0; i < len; i++) {
@@ -190,8 +194,8 @@ export function useExecutiveParticles(canvasRef: RefObject<HTMLCanvasElement | n
 
           if (distSq < LINK_DISTANCE_SQ) {
             const dist = Math.sqrt(distSq);
-            const alpha = (1 - dist / LINK_DISTANCE) * 0.22;
-            ctx.strokeStyle = `rgba(${GOLD_RGB}, ${alpha.toFixed(3)})`;
+            const alpha = (1 - dist / LINK_DISTANCE) * (isLightMode ? 0.28 : 0.22);
+            ctx.strokeStyle = `rgba(${activeGoldRgb}, ${alpha.toFixed(3)})`;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
@@ -207,8 +211,8 @@ export function useExecutiveParticles(canvasRef: RefObject<HTMLCanvasElement | n
 
           if (cDistSq < CURSOR_LINK_DISTANCE_SQ) {
             const cDist = Math.sqrt(cDistSq);
-            const cAlpha = (1 - cDist / CURSOR_LINK_DISTANCE) * 0.34;
-            ctx.strokeStyle = `rgba(${GOLD_LIGHT_RGB}, ${cAlpha.toFixed(3)})`;
+            const cAlpha = (1 - cDist / CURSOR_LINK_DISTANCE) * (isLightMode ? 0.38 : 0.34);
+            ctx.strokeStyle = `rgba(${activeGoldLightRgb}, ${cAlpha.toFixed(3)})`;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(pointer.x, pointer.y);
@@ -217,13 +221,15 @@ export function useExecutiveParticles(canvasRef: RefObject<HTMLCanvasElement | n
         }
       }
 
-      // 4. Dibujo de nodos de polvo de oro (#C5A059, opacidad controlada 0.15 - 0.40)
+      // 4. Dibujo de nodos de polvo de oro (opacidad adaptada y controlada)
       for (let i = 0; i < len; i++) {
         const p = particles[i];
         const shimmer = Math.sin(p.phase) * 0.04;
-        const alpha = Math.min(0.4, Math.max(0.15, p.baseAlpha + shimmer));
+        const alpha = isLightMode
+          ? Math.min(0.48, Math.max(0.2, p.baseAlpha + shimmer + 0.06))
+          : Math.min(0.4, Math.max(0.15, p.baseAlpha + shimmer));
 
-        ctx.fillStyle = `rgba(${GOLD_RGB}, ${alpha.toFixed(3)})`;
+        ctx.fillStyle = `rgba(${activeGoldRgb}, ${alpha.toFixed(3)})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();

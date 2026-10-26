@@ -4,6 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#040405" />
+
+    <!-- Inicialización de Tema Inmediata (Cero Parpadeo / FOUC = 0ms) -->
+    <script>
+      (function () {
+        try {
+          var mode = localStorage.getItem('dulcey_theme_mode') || 'system';
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
+          var root = document.documentElement;
+          if (isDark) {
+            root.classList.add('dark');
+            root.classList.remove('light');
+            root.setAttribute('data-theme', 'dark');
+          } else {
+            root.classList.remove('dark');
+            root.classList.add('light');
+            root.setAttribute('data-theme', 'light');
+          }
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) {
+            meta.setAttribute('content', isDark ? '#040405' : '#F7F5F0');
+          }
+        } catch (e) {}
+      })();
+    </script>
     <title>Dulcey &amp; Co. — Ingeniería Computacional y Software a Medida</title>
     <meta
       name="description"
@@ -100,7 +125,7 @@
       }
     </script>
   </head>
-  <body class="bg-[#040405] text-[#F4F4F6] antialiased selection:bg-[#C5A059]/25 selection:text-[#F4F4F6]">
+  <body class="bg-[var(--bg-obsidian)] text-[var(--text-ivory)] antialiased selection:bg-[var(--accent-gold)]/25 selection:text-[var(--text-ivory)]">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
