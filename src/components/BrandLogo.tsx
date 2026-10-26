@@ -11,30 +11,39 @@ export const DULCEY_MONOGRAM_D_PATH =
 
 /**
  * Identidad Institucional — `<BrandLogo />`
- * Emblema oficial de Dulcey & Co. con iconografía andina boyacense y trazos computacionales dorados,
- * acompañado de la denominación oficial en español.
+ * Emblema oficial de Dulcey & Co. blindado contra copia, descarga y arrastre,
+ * con doble capa protectora y soporte para modo oscuro, claro y móvil.
  */
 export function BrandLogo({ compact = false }: BrandLogoProps) {
   return (
     <div className="group inline-flex items-center gap-3.5 sm:gap-4 select-none">
-      {/* Emblema Oficial de la Firma */}
+      {/* Emblema Oficial de la Firma (Blindado contra copia/descarga) */}
       <div
+        data-protected-media
         className={`relative flex shrink-0 items-center justify-center ${
           compact ? 'h-9 w-9 sm:h-10 sm:w-10' : 'h-10 w-10 sm:h-11 sm:w-11'
         }`}
       >
-        <picture>
+        <picture className="pointer-events-none select-none">
           <source srcSet="/logo-square-512.webp" type="image/webp" />
           <img
             src="/logo-square-512.png"
             alt="Dulcey & Co."
             width={44}
             height={44}
-            className="h-full w-full object-contain drop-shadow-[0_2px_10px_rgba(197,160,89,0.22)] transition-transform duration-300 group-hover:scale-105"
+            draggable={false}
+            onContextMenu={(e) => e.preventDefault()}
+            className="pointer-events-none h-full w-full select-none object-contain drop-shadow-[0_2px_10px_rgba(197,160,89,0.22)] transition-transform duration-300 group-hover:scale-105"
             loading="eager"
             decoding="async"
           />
         </picture>
+        {/* Escudo invisible protector de puntero y pulsación táctil */}
+        <div
+          className="absolute inset-0 z-10 bg-transparent"
+          aria-hidden="true"
+          onContextMenu={(e) => e.preventDefault()}
+        />
       </div>
 
       {/* Denominación Institucional */}

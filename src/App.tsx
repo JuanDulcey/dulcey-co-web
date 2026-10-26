@@ -10,6 +10,7 @@ import { ParticleCanvas } from './components/ParticleCanvas';
 import { PhilosophyBar } from './components/PhilosophyBar';
 import { ServicesShowcase } from './components/ServicesShowcase';
 import { isServiceId, type ServiceId } from './data/services';
+import { useMediaProtection } from './hooks/useMediaProtection';
 import { useSpotlight } from './hooks/useSpotlight';
 
 const ContactModal = lazy(() => import('./components/ContactModal'));
@@ -37,6 +38,9 @@ export function App() {
   const initial = readInitialRouteState();
   const [activeServiceId, setActiveServiceId] = useState<ServiceId>(initial.serviceId);
   const [isContactOpen, setIsContactOpen] = useState<boolean>(initial.openModal);
+
+  // Blindaje automático de activos multimedia (bloquea descarga, clic derecho y arrastre de imágenes)
+  useMediaProtection();
 
   const { spotlightRef, spotlightHandlers } = useSpotlight<HTMLElement>();
 

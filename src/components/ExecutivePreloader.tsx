@@ -15,7 +15,8 @@ function shouldRunOpeningMonogram(): boolean {
 
 /**
  * Apertura Silenciosa de Emblema (~1.2s en primera visita de sesión)
- * Revelación suave y fluida del emblema oficial andino-computacional de Dulcey & Co.
+ * Revelación suave y fluida del emblema oficial andino-computacional de Dulcey & Co.,
+ * blindado contra copia y descargas directas.
  */
 export function ExecutivePreloader() {
   const initialRunRef = useRef<boolean>(shouldRunOpeningMonogram());
@@ -48,27 +49,36 @@ export function ExecutivePreloader() {
           className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[var(--bg-obsidian)] px-6 select-none print:hidden"
         >
           <div className="flex flex-col items-center">
-            {/* Contenedor del Emblema con halo sutil */}
+            {/* Contenedor del Emblema con halo sutil y blindaje */}
             <m.div
+              data-protected-media
               initial={{ opacity: 0, scale: 0.88 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-              className="relative mb-5 flex h-20 w-20 items-center justify-center sm:h-24 sm:w-24"
+              className="relative mb-5 flex h-20 w-20 items-center justify-center sm:h-24 sm:w-24 select-none"
             >
               <div
                 className="pointer-events-none absolute inset-0 -m-3 rounded-full bg-[radial-gradient(circle,rgba(197,160,89,0.18)_0%,transparent_70%)] blur-md"
                 aria-hidden="true"
               />
-              <picture>
+              <picture className="pointer-events-none select-none">
                 <source srcSet="/logo-square-512.webp" type="image/webp" />
                 <img
                   src="/logo-square-512.png"
                   alt="Dulcey & Co."
                   width={96}
                   height={96}
-                  className="relative z-10 h-full w-full object-contain drop-shadow-[0_4px_24px_rgba(197,160,89,0.32)]"
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
+                  className="pointer-events-none relative z-10 h-full w-full select-none object-contain drop-shadow-[0_4px_24px_rgba(197,160,89,0.32)]"
                 />
               </picture>
+              {/* Escudo invisible frontal */}
+              <div
+                className="absolute inset-0 z-20 bg-transparent"
+                aria-hidden="true"
+                onContextMenu={(e) => e.preventDefault()}
+              />
             </m.div>
 
             <m.p
