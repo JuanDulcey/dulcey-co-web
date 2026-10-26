@@ -34,7 +34,7 @@ npm run preview
 ## Personalización Rápida para Producción
 
 1. **Credenciales corporativas:** Edita `src/data/contact.ts` (`EXECUTIVE_CONTACT_CONFIG`) con tu dominio final, correo, número de WhatsApp y (opcionalmente) `calendarUrl` o `formEndpoint`. Tanto `vCard`, como el QR, WhatsApp y los enlaces de correo se actualizarán automáticamente.
-2. **Emblema definitivo:** Sustituye el bloque `<svg>` en `src/components/BrandLogo.tsx` (y opcionalmente `public/favicon.svg` / `public/og-dulcey.png`).
+2. **Emblema oficial:** Ya se encuentra integrado el isotipo oficial desde `public/logo.png` con variantes optimizadas WebP/PNG y tamaños para PWA/Favicon. Para futuras actualizaciones de marca, basta con sustituir `public/logo.png`.
 
 ---
 
