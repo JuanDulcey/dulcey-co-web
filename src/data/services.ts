@@ -41,10 +41,44 @@ export const HERO_MANIFESTO = {
   overline: 'Firma de Ingeniería y Arquitectura de Software',
   headlinePrefix: 'Ingeniería de software con ',
   headlineHighlight: 'precisión de alta relojería',
-  headlineSuffix: ' y arquitectura sin límites.',
+  headlineSuffix: ', forjada en Boyacá.',
   paragraph:
-    'En Dulcey & Co. concebimos cada sistema digital como una pieza única de ingeniería. Integramos diseño web de alto impacto, desarrollo de software propietario, agentes autónomos de inteligencia artificial y modelos matemáticos predictivos para convertir la complejidad operativa de su empresa en una ventaja competitiva duradera.',
+    'Diseñamos plataformas web, software propietario, agentes de inteligencia artificial y modelos predictivos que convierten la complejidad operativa de su empresa en una ventaja duradera.',
 } as const;
+
+export interface MethodStep {
+  index: '01' | '02' | '03' | '04';
+  title: string;
+  description: string;
+}
+
+/** Método de Trabajo — Cuatro fases sobrias del encargo */
+export const METHOD_STEPS: readonly MethodStep[] = [
+  {
+    index: '01',
+    title: 'Diagnóstico Confidencial',
+    description:
+      'Bajo acuerdo de confidencialidad analizamos su operación, sus datos y sus objetivos para definir el problema real.',
+  },
+  {
+    index: '02',
+    title: 'Arquitectura',
+    description:
+      'Diseñamos la solución técnica, el alcance y el cronograma antes de escribir una sola línea de código.',
+  },
+  {
+    index: '03',
+    title: 'Construcción',
+    description:
+      'Desarrollo iterativo con entregas verificables y comunicación directa con el ingeniero a cargo.',
+  },
+  {
+    index: '04',
+    title: 'Entrega y Acompañamiento',
+    description:
+      'Transferencia documentada del código y la propiedad intelectual, con soporte continuo posterior.',
+  },
+] as const;
 
 export const SERVICES_DATA: readonly ServicePillar[] = [
   {

@@ -21,7 +21,7 @@ export function BrandLogo({ compact = false }: BrandLogoProps) {
       <div
         data-protected-media
         className={`relative flex shrink-0 items-center justify-center ${
-          compact ? 'h-9 w-9 sm:h-10 sm:w-10' : 'h-10 w-10 sm:h-11 sm:w-11'
+          compact ? 'h-9 w-9 sm:h-10 sm:w-10' : 'h-[52px] w-[52px] sm:h-14 sm:w-14'
         }`}
       >
         <picture className="pointer-events-none select-none">
@@ -29,8 +29,8 @@ export function BrandLogo({ compact = false }: BrandLogoProps) {
           <img
             src="/logo-square-512.png"
             alt="Dulcey & Co."
-            width={44}
-            height={44}
+            width={56}
+            height={56}
             draggable={false}
             onContextMenu={(e) => e.preventDefault()}
             className="pointer-events-none h-full w-full select-none object-contain drop-shadow-[0_2px_10px_rgba(197,160,89,0.22)] transition-transform duration-300 group-hover:scale-105"
@@ -55,7 +55,7 @@ export function BrandLogo({ compact = false }: BrandLogoProps) {
         >
           DULCEY &amp; CO.
         </span>
-        <span className="mt-1.5 font-sans text-[9px] sm:text-[10.5px] font-normal uppercase tracking-[0.15em] sm:tracking-[0.18em] text-[var(--accent-gold)] leading-tight">
+        <span className="mt-1.5 hidden sm:block font-sans text-[10.5px] font-normal uppercase tracking-[0.18em] text-[var(--accent-gold)] leading-tight print:block">
           INGENIERÍA COMPUTACIONAL Y SOFTWARE A MEDIDA
         </span>
       </div>

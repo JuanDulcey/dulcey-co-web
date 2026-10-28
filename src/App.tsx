@@ -3,11 +3,15 @@ import { LazyMotion, MotionConfig, domMax } from 'framer-motion';
 import { EngravedCorners } from './components/EngravedCorners';
 import { ExecutiveFooter } from './components/ExecutiveFooter';
 import { ExecutivePreloader } from './components/ExecutivePreloader';
+import { FounderSection } from './components/FounderSection';
 import { HeroSection } from './components/HeroSection';
+import { MethodSection } from './components/MethodSection';
 import { Navbar } from './components/Navbar';
 import { NoiseOverlay } from './components/NoiseOverlay';
 import { ParticleCanvas } from './components/ParticleCanvas';
 import { PhilosophyBar } from './components/PhilosophyBar';
+import { ProjectsSection } from './components/ProjectsSection';
+import { Reveal } from './components/Reveal';
 import { ServicesShowcase } from './components/ServicesShowcase';
 import { isServiceId, type ServiceId } from './data/services';
 import { useMediaProtection } from './hooks/useMediaProtection';
@@ -135,18 +139,45 @@ export function App() {
               />
 
               {/* Las Cuatro Áreas de Práctica */}
-              <ServicesShowcase
-                activeServiceId={activeServiceId}
-                onSelectService={handleSelectService}
-                onConsultService={handleConsultSpecificService}
+              <Reveal>
+                <ServicesShowcase
+                  activeServiceId={activeServiceId}
+                  onSelectService={handleSelectService}
+                  onConsultService={handleConsultSpecificService}
+                />
+              </Reveal>
+              <hr
+                aria-hidden="true"
+                className="border-0 border-t border-[var(--border-hairline)]"
               />
+
+              {/* Método de Trabajo */}
+              <Reveal>
+                <MethodSection />
+              </Reveal>
+
+              {/* Proyectos Selectos (se muestra solo cuando existan proyectos) */}
+              <Reveal>
+                <ProjectsSection />
+              </Reveal>
+              <hr
+                aria-hidden="true"
+                className="border-0 border-t border-[var(--border-hairline)]"
+              />
+
+              {/* El Fundador */}
+              <Reveal>
+                <FounderSection />
+              </Reveal>
               <hr
                 aria-hidden="true"
                 className="border-0 border-t border-[var(--border-hairline)]"
               />
 
               {/* El Estándar Dulcey & Co. */}
-              <PhilosophyBar />
+              <Reveal>
+                <PhilosophyBar />
+              </Reveal>
               <hr
                 aria-hidden="true"
                 className="border-0 border-t border-[var(--border-hairline)]"

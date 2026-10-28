@@ -36,6 +36,9 @@ npm run preview
 1. **Credenciales corporativas:** Edita `src/data/contact.ts` (`EXECUTIVE_CONTACT_CONFIG`) con tu dominio final, correo, número de WhatsApp y (opcionalmente) `calendarUrl` o `formEndpoint`. Tanto `vCard`, como el QR, WhatsApp y los enlaces de correo se actualizarán automáticamente.
 2. **Emblema oficial:** Ya se encuentra integrado el isotipo oficial desde `public/logo.png` con variantes optimizadas WebP/PNG y tamaños para PWA/Favicon. Para futuras actualizaciones de marca, basta con sustituir `public/logo.png`.
 3. **Blindaje de propiedad intelectual para imágenes:** El sistema incluye protección global activa (`useMediaProtection` + reglas CSS) que bloquea silenciosamente clic derecho, arrastre y menús de guardado en cualquier etiqueta `<img>` o `<picture>`. Para máxima protección en futuras imágenes y galerías, puedes usar directamente el componente `<ProtectedImage src="..." alt="..." />` (`src/components/ProtectedImage.tsx`), el cual añade un escudo frontal transparente contra pulsaciones largas en dispositivos móviles iOS y Android.
+4. **Perfil del fundador:** Edita `src/data/founder.ts` (nombre, cargo, trayectoria, cita y foto opcional en `public/`). Si no hay foto, se muestra un monograma con tus iniciales.
+5. **Proyectos selectos:** Agrega proyectos en `src/data/projects.ts`. La sección permanece oculta mientras la lista esté vacía y aparece sola al añadir el primero (imágenes protegidas contra descarga).
+6. **WhatsApp:** Mientras `whatsappNumber` sea el marcador `573000000000`, los accesos de WhatsApp del hero se reemplazan automáticamente por «Escribir por correo».
 
 ---
 

@@ -338,4 +338,10 @@ html.light .spotlight-module::after {
   .spotlight-module::after {
     display: none !important;
   }
+
+  /* Secciones con aparición al desplazarse: siempre visibles en el Dossier */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

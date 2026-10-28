@@ -26,6 +26,7 @@ export const EXECUTIVE_CONTACT_CONFIG = {
 
   // Membrete e Identidad Regional
   location: 'Villa de Leyva, Boyacá · Colombia',
+  locationShort: 'Villa de Leyva · Boyacá',
   cityRegion: 'Villa de Leyva;Boyacá;;Colombia',
   coordinates: '05°38′00″N · 73°31′36″O',
   directActionLabel: 'Contacto Ejecutivo Directo',
@@ -38,6 +39,24 @@ export interface ConsultationBrief {
   serviceShortLabel: string;
   clientName?: string;
   projectNote?: string;
+}
+
+/**
+ * Indica si hay un número de WhatsApp real configurado (no el marcador `573000000000`).
+ * Los accesos de WhatsApp de la interfaz se ocultan automáticamente hasta entonces.
+ */
+export function hasRealWhatsApp(): boolean {
+  const n = EXECUTIVE_CONTACT_CONFIG.whatsappNumber;
+  return EXECUTIVE_CONTACT_CONFIG.whatsappEnabled && n.length >= 10 && !n.endsWith('00000000');
+}
+
+export function buildDirectWhatsAppUrl(): string {
+  const text = 'Estimados señores de Dulcey & Co., quisiera conversar con ustedes.';
+  return `https://wa.me/${EXECUTIVE_CONTACT_CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`;
+}
+
+export function buildDirectMailtoUrl(): string {
+  return `mailto:${EXECUTIVE_CONTACT_CONFIG.email}?subject=${encodeURIComponent('Contacto | Dulcey & Co.')}`;
 }
 
 export function composeExecutiveSubject(brief: ConsultationBrief): string {
